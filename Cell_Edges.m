@@ -15,18 +15,12 @@ for i = 6
         im = medfilt2(im,[5,5]);
         % edge detection
         thresh = graythresh(im);
-        bw = im2bw(im,thresh);
+        [imrgb,bw] = edgeTemp(im);
         rprop = regionprops(bw,'Area','MajorAxisLength','MinorAxisLength','Perimeter');
         majax(k) = rprop.MajorAxisLength;
         minax(k) = rprop.MinorAxisLength;
         area(k) = rprop.Area;
         perim(k) = rprop.Perimeter;
-        edg = bwperim(bw);
-        imrgb = repmat(im,[1,1,3]);
-        [i,j] = find(edg == 1);
-        for l = 1:length(i)
-            imrgb(i(l),j(l),1) = 1;
-        end
         subplot(4,2,k), imshow(imrgb);
     end
 end
