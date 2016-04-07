@@ -12,12 +12,17 @@ for i = 6
     end
     info = imfinfo(fname);
     number_of_images = numel(info);
+    imfull = imread(fname,1);
+    imshow(mat2gray(imfull));
+    [x,y] = ginput(1);
+    x = round(x); y = round(y);
     %Read TIF Stack
     for k = 1:number_of_images
-        im = imread(fname,k);
+        imfull = imread(fname,k);
+        im = imfull(y-120:y+120,x-120:x+120);
         im = mat2gray(im);
-        im = medfilt2(im,[5,5]);
-        % edge detection
+        im = medfilt2(im,[10,10]);
+        % Edge detection
         thresh = graythresh(im);
         bw = im2bw(im,thresh);
         rprop = regionprops(bw,'Area','MajorAxisLength','MinorAxisLength','Perimeter');
@@ -32,5 +37,6 @@ for i = 6
             imrgb(i(l),j(l),1) = 1;
         end
         subplot(4,2,k), imshow(imrgb);
+        title(num2str(k));
     end
 end
