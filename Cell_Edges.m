@@ -14,6 +14,7 @@ for i = 6
     imfull = imread(fname,1);
     imshow(mat2gray(imfull));
     [x,y] = ginput(1);
+    x = round(x); y = round(y);
     %Read TIF Stack
     for k = 1:number_of_images
         imfull = imread(fname,k);
