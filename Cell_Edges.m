@@ -4,14 +4,17 @@
  % Edge Detection using Sobel
  figure,
  for i = 6
+     info = imfinfo(fname);
      number_of_images = numel(info);
-     %Read TIF Stack
+     imfull = imread(fname,1);
+     imshow(mat2gray(imfull));
+     [x,y] = ginput(1);
+     x = round(x); y = round(y);
+     % Read TIF Stack
      for k = 1:number_of_images
-         im = imread(fname,k);
          imfull = imread(fname,k);
          im = imfull(800:950,670:880);
          im = mat2gray(im);
-         im = medfilt2(im,[5,5]);
          % Noise-filtering
          im = medfilt2(im,[15,15]);
          im = wiener2(im,[5,5]);
