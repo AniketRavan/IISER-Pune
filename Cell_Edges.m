@@ -1,3 +1,7 @@
+% Written by Aniket Ravan 
+% Github link: https://github.com/AniketRavan/IISER-Pune
+% Last modified: 4/7/16
+% Edge Detection using Otsu's Algorithm
 figure,
 for i = 6
     if i < 10
