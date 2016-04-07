@@ -1,3 +1,6 @@
+% Written by Aniket Ravan 
+% Github link: https://github.com/AniketRavan/IISER-Pune
+% Last modified: 4/7/16
 figure,
 for i = 6
     if i < 10
@@ -13,10 +16,10 @@ for i = 6
         im = imread(fname,k);
         im = mat2gray(im);
         im = medfilt2(im,[5,5]);
-        % edge detection
-        thresh = graythresh(im);
+        % Edge detection using standard deviation filter
         [imrgb,bw] = edgeTemp(im);
         rprop = regionprops(bw,'Area','MajorAxisLength','MinorAxisLength','Perimeter');
+        % Extracting region properties of the cell
         majax(k) = rprop.MajorAxisLength;
         minax(k) = rprop.MinorAxisLength;
         area(k) = rprop.Area;

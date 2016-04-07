@@ -1,3 +1,6 @@
+% Written by Aniket Ravan 
+% Github link: https://github.com/AniketRavan/IISER-Pune
+% Last modified: 4/7/16
 for i = 1:23
     if i < 10
         fname = ['40x-dic-egfp-pc12-ngfxy0',num2str(i),'c2.tif'];
@@ -18,10 +21,12 @@ for i = 1:23
         im = imread(fname,k);
         im = mat2gray(im);
         width = 150; height = 150;
+        % Registering mean intensity of ROI
         I(k) = mean(mean(im(y:y + height, x:x + width)));
     end
     s = std(I);
     figure2 = figure;
+    % Plotting deviation in I with respect to mean(I)
     plot((1:length(I))*30,(I-mean(I)),'o');
     xlabel('Time in minutes');
     ylabel('Deviation of mean intensity');
