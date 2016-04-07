@@ -13,7 +13,7 @@
      % Read TIF Stack
      for k = 1:number_of_images
          imfull = imread(fname,k);
-         im = imfull(800:950,670:880);
+         im = imfull(y-120:y+120,x-120:x+120);
          im = mat2gray(im);
          % Noise-filtering
          im = medfilt2(im,[15,15]);
